@@ -1,0 +1,27 @@
+.footerMain {
+  height: 340px;
+  width: 100%;
+  color: #3e4852;
+}
+
+.copyright {
+  font-size: 0.25em;
+  text-align: center;
+  margin: 50px auto auto 0px;
+}
+
+.columnStylesMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.columnStyles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
