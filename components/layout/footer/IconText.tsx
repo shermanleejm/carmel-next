@@ -1,21 +1,15 @@
-import { Grid, Typography } from '@mui/material';
-import { isMobile } from 'react-device-detect';
-import { useEffect, useState } from 'react';
+import { Grid } from '@mui/material';
+import { useIsMobile } from '../../Helpers';
 
 type ReactiveIconTextType = {
-  icon?: any;
+  icon?: JSX.Element;
   text?: string;
   link?: string;
 };
 
 // TODO: please help me think of a better name
 const IconText = ({ icon, text, link }: ReactiveIconTextType) => {
-  const [isTouch, setIsTouch] = useState(false);
-  useEffect(() => {
-    if (isMobile) {
-      setIsTouch(true);
-    }
-  }, []);
+  const isTouch = useIsMobile();
 
   return (
     <a href={link} target="_blank" rel="noreferrer">

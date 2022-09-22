@@ -1,8 +1,10 @@
-const ServiceDetails = () => {
-  return <div>
-    
+type ServiceDetailsType = {
+  title: string;
+  details: string[];
+};
 
-  </div>;
+const ServiceDetails = ({ title, details }: ServiceDetailsType) => {
+  return <div></div>;
 };
 
 export default ServiceDetails;

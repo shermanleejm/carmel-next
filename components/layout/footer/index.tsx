@@ -8,16 +8,11 @@ import EmailIcon from 'public/icons/email.svg';
 import FacebookIcon from 'public/icons/facebook.svg';
 import InstagramIcon from 'public/icons/instagram.svg';
 import YoutubeIcon from 'public/icons/youtube.svg';
-import { useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import SVGContainer from '../../SVGContainer';
+import { useIsMobile } from '../../Helpers';
 
 export default function Footer() {
-  const [isTouch, setIsTouch] = useState(false);
-  useEffect(() => {
-    if (isMobile) {
-      setIsTouch(true);
-    }
-  }, []);
+  const isTouch = useIsMobile();
 
   const COPYRIGHT =
     'Copyright © 2022 Mount Carmel Bible-Presbytherian Church. All rights reserved.';
@@ -41,7 +36,7 @@ export default function Footer() {
             spacing={2}
           >
             <Grid item>
-              <Logo />
+              <SVGContainer svg={<Logo />} height={'auto'} width={300} />
             </Grid>
             <Grid item>
               <IconText
@@ -59,17 +54,49 @@ export default function Footer() {
         </Grid>
 
         {/* Services Section */}
-        <Grid item>
-          <Grid container direction={'column'} spacing={2}>
-            <Grid item>
-              <Typography variant="h6">Services</Typography>
+        {!isTouch && (
+          <Grid item>
+            <Grid container direction={'column'} spacing={2}>
+              <Grid item>
+                <Typography variant="h6">Services</Typography>
+              </Grid>
+              <Grid item>English Worship Service</Grid>
+              <Grid item>Carmel Kids</Grid>
+              <Grid item>Youth Service</Grid>
+              <Grid item>Mandarin Worship Service</Grid>
             </Grid>
-            <Grid item>English Worship Service</Grid>
-            <Grid item>Carmel Kids</Grid>
-            <Grid item>Youth Service</Grid>
-            <Grid item>Mandarin Worship Service</Grid>
           </Grid>
-        </Grid>
+        )}
+
+        {/* Services Section */}
+        {!isTouch && (
+          <Grid item>
+            <Grid container direction={'column'} spacing={2}>
+              <Grid item>
+                <Typography variant="h6">Services</Typography>
+              </Grid>
+              <Grid item>English Worship Service</Grid>
+              <Grid item>Carmel Kids</Grid>
+              <Grid item>Youth Service</Grid>
+              <Grid item>Mandarin Worship Service</Grid>
+            </Grid>
+          </Grid>
+        )}
+
+        {/* Services Section */}
+        {!isTouch && (
+          <Grid item>
+            <Grid container direction={'column'} spacing={2}>
+              <Grid item>
+                <Typography variant="h6">Services</Typography>
+              </Grid>
+              <Grid item>English Worship Service</Grid>
+              <Grid item>Carmel Kids</Grid>
+              <Grid item>Youth Service</Grid>
+              <Grid item>Mandarin Worship Service</Grid>
+            </Grid>
+          </Grid>
+        )}
 
         {/* Social Section */}
         <Grid item>

@@ -1,0 +1,12 @@
+.banner {
+  background-color: #8d0101;
+  width: 100vw;
+  color: white;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 200;
+}
