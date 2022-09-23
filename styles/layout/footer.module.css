@@ -1,15 +1,15 @@
-.footerMain {
+.links {
   height: 340px;
   width: 100%;
   color: #3e4852;
-  font-size: 0.8em;
-  padding: 0 40px;
+  font-size: 0.7em;
+  padding: 80px 10px;
 }
 
 .copyright {
   font-size: 0.25em;
   text-align: center;
-  margin: 50px auto auto 0px;
+  margin: 20px 10px;
 }
 
 .columnStylesMobile {
@@ -26,4 +26,35 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+}
+
+.footer-banner {
+  background-color: #8d0101;
+  padding: 20px 0;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 4px;
+  bottom: -10px;
+  left: 0;
+  background-color: #f19e04;
+  /* transform-origin: bottom right; */
+  transition: transform 0.25s ease-in-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  /* transform-origin: bottom left; */
 }

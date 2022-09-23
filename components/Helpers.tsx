@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 export const MOBILE_BREAKPOINT = 900;
 
 export function useIsMobile() {
-  const [isTouch, setIsTouch] = useState(false);
+  const [isMobile, setisMobile] = useState(false);
   const [width, height] = useWindowSize();
 
   useEffect(() => {
-    setIsTouch(width <= MOBILE_BREAKPOINT);
+    setisMobile(width <= MOBILE_BREAKPOINT);
   }, [width]);
 
-  return isTouch;
+  return isMobile;
 }

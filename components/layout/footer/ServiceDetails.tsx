@@ -1,9 +1,9 @@
-type ServiceDetailsType = {
+type ServiceDetailsProps = {
   title: string;
   details: string[];
 };
 
-const ServiceDetails = ({ title, details }: ServiceDetailsType) => {
+const ServiceDetails = ({ title, details }: ServiceDetailsProps) => {
   return <div></div>;
 };
 

@@ -1,5 +1,9 @@
 import styles from 'styles/layout/header.module.css';
 
+type HeaderProps = {
+  backgroundImage: JSX.Element;
+};
+
 const Header = () => {
   return (
     <div>

@@ -1,0 +1,11 @@
+.outlined-button {
+  color: white;
+  border-color: white;
+  text-transform: uppercase;
+}
+
+.outlined-button:hover {
+  border-color: white;
+  color: #8d0101;
+  background-color: white;
+}
