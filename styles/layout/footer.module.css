@@ -9,7 +9,7 @@
 .copyright {
   font-size: 0.25em;
   text-align: center;
-  margin: 20px 10px;
+  margin: 10px auto 10px;
 }
 
 .columnStylesMobile {
@@ -31,30 +31,4 @@
 .footer-banner {
   background-color: #8d0101;
   padding: 20px 0;
-}
-
-.hover-underline-animation {
-  display: inline-block;
-  position: relative;
-  color: white;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.hover-underline-animation:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 4px;
-  bottom: -10px;
-  left: 0;
-  background-color: #f19e04;
-  /* transform-origin: bottom right; */
-  transition: transform 0.25s ease-in-out;
-}
-
-.hover-underline-animation:hover:after {
-  transform: scaleX(1);
-  /* transform-origin: bottom left; */
 }

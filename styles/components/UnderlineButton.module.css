@@ -1,0 +1,25 @@
+.underline_button {
+  display: inline-block;
+  position: relative;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.underline_button:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 4px;
+  bottom: -10px;
+  left: 0;
+  background-color: #f19e04;
+  /* transform-origin: bottom right; */
+  transition: transform 0.25s ease-in-out;
+}
+
+.underline_button:hover:after {
+  transform: scaleX(1);
+  /* transform-origin: bottom left; */
+}

@@ -1,34 +1,12 @@
-import { Button, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import styles from 'styles/layout/footer.module.css';
 import OutlinedButton from '../../buttons/OutlinedButton';
 import { useIsMobile } from '../../Helpers';
+import { Pages } from 'pages/index';
+import UnderlineButton from '../../buttons/UnderlineButton';
 
 const Banner = () => {
   const isMobile = useIsMobile();
-
-  // TODO: persist this for easy changing
-  const links = [
-    {
-      title: 'Home',
-      link: '/home',
-    },
-    {
-      title: 'Our Beliefs',
-      link: '/our-beliefs',
-    },
-    {
-      title: 'Livestream',
-      link: '/livestream', // TODO: update this to linktree
-    },
-    {
-      title: "I'm New",
-      link: '/newcomer',
-    },
-    {
-      title: 'Courses',
-      link: '/events',
-    },
-  ];
 
   return (
     <div className={styles['footer-banner']}>
@@ -47,19 +25,17 @@ const Banner = () => {
             spacing={3}
             direction={isMobile ? 'column' : 'row'}
           >
-            {links.map((link, i) => {
+            {Pages.map((page, i) => {
               return (
                 <Grid item key={i}>
-                  <a className={styles['hover-underline-animation']} href={link.link}>
-                    {link.title}
-                  </a>
+                  <UnderlineButton title={page.title} link={page.link} />
                 </Grid>
               );
             })}
           </Grid>
         </Grid>
         <Grid item>
-          <OutlinedButton>Join us in person</OutlinedButton>
+          <OutlinedButton href={'/services'}>Join us in person</OutlinedButton>
         </Grid>
       </Grid>
     </div>

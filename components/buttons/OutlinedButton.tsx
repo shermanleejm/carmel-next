@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@mui/material';
 import styles from 'styles/components/buttons.module.css';
+import styled from '@emotion/styled';
 
 type OutlinedButtonProps = {
   children: string; // button text
@@ -10,16 +11,22 @@ type OutlinedButtonProps = {
 };
 
 const OutlinedButton = ({ children, href, size }: OutlinedButtonProps) => {
-  const isLocalRedirect = href ? href.substring(0, 'http'.length) === 'http' : false;
+  const CustomButton = styled(Button)({
+    color: 'white',
+    borderColor: 'white',
+    textTransform: 'uppercase',
+    '&:hover': {
+      color: '#8d0101',
+      backgroundColor: '#fff',
+      borderColor: 'white',
+    },
+  });
+
   return (
     <Link href={href ?? ''}>
-      <Button
-        variant="outlined"
-        size={size ?? 'medium'}
-        className={styles['outlined-button']}
-      >
+      <CustomButton variant="outlined" size={size ?? 'medium'}>
         {children}
-      </Button>
+      </CustomButton>
     </Link>
   );
 };

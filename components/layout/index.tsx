@@ -1,13 +1,13 @@
 import { useIsMobile } from '../Helpers';
 import Footer from './footer';
-import Header from './header';
+import Header, { HeaderProps } from './header';
 
-export default function Layout({ children }) {
+export default function Layout({ children, ...rest }: HeaderProps) {
   const isMobile = useIsMobile();
 
   return (
     <>
-      <Header />
+      <Header {...rest} />
       <main> {children} </main>
       <Footer />
     </>

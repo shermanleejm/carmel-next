@@ -1,16 +1,20 @@
-import styles from 'styles/layout/header.module.css';
+import { StaticImageData } from 'next/image';
+import Banner from './Banner';
+import NavBar from './NavBar';
 
-type HeaderProps = {
-  backgroundImage: JSX.Element;
+export type HeaderProps = {
+  title?: string | JSX.Element;
+  backgroundImage?: StaticImageData;
+  showButtons?: boolean;
+  children?: JSX.Element;
 };
 
-const Header = () => {
+const Header = ({ title = '', backgroundImage, showButtons = true }: HeaderProps) => {
   return (
     <div>
-      <div className={styles.banner}>
-        Join us every sunday for english live stream at&nbsp;
-        <span style={{ fontWeight: 400 }}>9am</span>
-      </div>
+      <Banner />
+
+      <NavBar />
     </div>
   );
 };
