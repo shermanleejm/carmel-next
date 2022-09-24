@@ -4,6 +4,7 @@ import OutlinedButton from '../../buttons/OutlinedButton';
 import { useIsMobile } from '../../Helpers';
 import { Pages } from 'pages/index';
 import UnderlineButton from '../../buttons/UnderlineButton';
+import MenuButton from '../../buttons/MenuButton';
 
 const Banner = () => {
   const isMobile = useIsMobile();
@@ -28,7 +29,7 @@ const Banner = () => {
             {Pages.map((page, i) => {
               return (
                 <Grid item key={i}>
-                  <UnderlineButton title={page.title} link={page.link} />
+                  <MenuButton link={page.link}>{page.title}</MenuButton>
                 </Grid>
               );
             })}

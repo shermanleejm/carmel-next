@@ -7,17 +7,24 @@ type OutlinedButtonProps = {
   children: string; // button text
   href?: string;
   size?: 'large' | 'small' | 'medium';
+  inverted?: boolean;
   // color?: string; // defaults to white and #f19e04 when hover
 };
 
-const OutlinedButton = ({ children, href, size }: OutlinedButtonProps) => {
+const OutlinedButton = ({
+  children,
+  href,
+  size,
+  inverted = false,
+}: OutlinedButtonProps) => {
   const CustomButton = styled(Button)({
-    color: 'white',
+    color: inverted ? '#8d0101' : 'white',
+    backgroundColor: inverted ? 'white' : '',
     borderColor: 'white',
     textTransform: 'uppercase',
     '&:hover': {
-      color: '#8d0101',
-      backgroundColor: '#fff',
+      color: inverted ? 'white' : '#8d0101',
+      backgroundColor: inverted ? '' : '#fff',
       borderColor: 'white',
     },
   });

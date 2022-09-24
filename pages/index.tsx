@@ -33,7 +33,7 @@ export const Pages: PagesType[] = [
 
 export default function Home() {
   return (
-    <Layout title="">
+    <Layout title="" backgroundImage={worship}>
       <div>
         <CardWithBlurp
           title="Prayer and Praise"
