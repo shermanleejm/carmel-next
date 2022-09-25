@@ -1,14 +1,17 @@
+import { Button, CircularProgress } from '@mui/material';
 import { getSession, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import styles from 'styles/pages/Dashboard.module.css';
+import RichText from '../../../components/texteditor/RichText';
 
 export default function Dashboard() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const { data: session } = useSession();
 
   useEffect(() => {
     getSession().then((session) => {
-      console.log(session);
       const email = session?.user?.email;
       if (!email) {
         router.push('/admin');
@@ -24,11 +27,15 @@ export default function Dashboard() {
   });
 
   return isLoading ? (
-    <div></div>
+    <div className={styles.full_page_loader}>
+      <CircularProgress />
+    </div>
   ) : (
     <div>
-      <h1>BIG WORDS</h1>
-      <button onClick={() => signOut({ callbackUrl: '/' })}>signout</button>
+      <h1>Welcome {session?.user?.name}</h1>
+      <Button onClick={() => signOut({ callbackUrl: '/' })}>sign out</Button>
+
+      <RichText />
     </div>
   );
 }

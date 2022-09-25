@@ -9,3 +9,28 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Articles {
+  id          Int           @id @default(autoincrement())
+  title       String
+  description String
+  author      String
+  date        String?
+  link        String?
+  ArticleTags ArticleTags[]
+}
+
+model Tags {
+  id          Int           @id @default(autoincrement())
+  slug        String
+  name        String
+  ArticleTags ArticleTags[]
+}
+
+model ArticleTags {
+  id        Int      @id @default(autoincrement())
+  article   Articles @relation(fields: [articleId], references: [id])
+  articleId Int
+  tag       Tags     @relation(fields: [TagId], references: [id])
+  TagId     Int
+}

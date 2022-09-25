@@ -1,21 +1,7 @@
-import { Button } from '@mui/material';
-import { useSession, signIn, signOut, getSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
 const Admin = () => {
-  return (
-    <div>
-      <Button
-        onClick={() =>
-          signIn('google', {
-            callbackUrl: '/admin/dashboard',
-          })
-        }
-      >
-        login
-      </Button>
-    </div>
-  );
+  signIn('google', { callbackUrl: '/admin/dashboard' });
 };
 
 export default Admin;
