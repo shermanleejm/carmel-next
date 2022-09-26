@@ -46,14 +46,16 @@ const NavBarLinks = ({ inverted }: NavBarLinksProps) => {
               <Grid container direction={'row'} justifyContent={'center'} spacing={2}>
                 {Pages.filter((page) => page.link !== '/').map((page, i) => (
                   <Grid item key={i}>
-                    <MenuButton link={page.link}>{page.title}</MenuButton>
+                    <MenuButton inverted={inverted} link={page.link}>
+                      {page.title}
+                    </MenuButton>
                   </Grid>
                 ))}
               </Grid>
             </Grid>
 
             <Grid item xs={3} style={{ textAlign: 'right' }}>
-              <OutlinedButton inverted href={'/services'}>
+              <OutlinedButton inverted={inverted} href={'/services'}>
                 Join us in person
               </OutlinedButton>
             </Grid>

@@ -1,7 +1,11 @@
 import Layout from '../../components/layout';
 
 const Services = () => {
-  return <Layout>services</Layout>;
+  return (
+    <Layout>
+      <div>services</div>
+    </Layout>
+  );
 };
 
 export default Services;

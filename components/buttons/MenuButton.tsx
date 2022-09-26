@@ -8,6 +8,7 @@ export const selectedPath = atom('/');
 type MenuButtonProps = {
   children: string | JSX.Element;
   link: string;
+  inverted?: boolean;
 };
 
 const MenuButton = ({ children, link, ...rest }: MenuButtonProps) => {

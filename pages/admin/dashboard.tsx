@@ -3,10 +3,10 @@ import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from 'styles/pages/Dashboard.module.css';
-import CustomDrawer from './CustomDrawer';
+import CustomDrawer from 'components/admin/CustomDrawer';
 import { AddCircle, Apps, DeleteOutline } from '@mui/icons-material';
-import NewPost from '../../../components/texteditor/NewPost';
-import AllArticles from '../../../components/admin/AllArticles';
+import NewPost from 'components/texteditor/NewPost';
+import AllArticles from 'components/admin/AllArticles';
 import { Articles } from '@prisma/client';
 
 export type DrawerComponentType = {
@@ -78,4 +78,15 @@ export default function Dashboard() {
       </CustomDrawer>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  //   const req = await fetch(`${process.env.NEXTAUTH_URL}/api/articles`);
+  //   const articles = (await req.json()).data;
+
+  return {
+    props: {
+      // articles: articles,
+    },
+  };
 }

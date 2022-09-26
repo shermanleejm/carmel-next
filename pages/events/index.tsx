@@ -1,7 +1,11 @@
 import Layout from '../../components/layout';
 
 const Events = () => {
-  return <Layout>events</Layout>;
+  return (
+    <Layout>
+      <div>events</div>
+    </Layout>
+  );
 };
 
 export default Events;

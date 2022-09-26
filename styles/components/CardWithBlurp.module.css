@@ -1,5 +1,6 @@
 .card_blurp_container {
   position: relative;
+  width: 300px;
 }
 
 .overlay {

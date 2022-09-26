@@ -16,25 +16,36 @@ export default function AllArticles({
   handleChangeComponent,
 }: AllArticlesProps) {
   const [isLoading, setIsLoading] = useState(false);
-
   const [articles, setArticles] = useState<Articles[]>([]);
+
   useEffect(() => {
-    axios.get(`/api/articles${isBin ? '/bin' : ''}`).then((res) => {
-      setArticles(res.data.data);
+    async function getStuff() {
+      const url = `/api/articles${isBin ? '/bin' : ''}`;
+      const req = await fetch(url);
+      const articles = (await req.json()).data;
+      setArticles(articles);
+    }
+
+    getStuff().catch((err) => console.error(err));
+  }, [isBin, isLoading]);
+
+  async function handleDelete(id: number) {
+    setIsLoading(true);
+    await fetch(`/api/articles${isBin ? '/bin' : ''}/${id}`, {
+      method: 'DELETE',
     });
-  }, [isLoading, isBin]);
+    setIsLoading(false);
+  }
 
-  const handleDelete = (id: number) => {
+  async function handleRestore(id: number) {
     setIsLoading(true);
-    axios
-      .delete(`/api/articles${isBin ? '/bin' : ''}`, { data: { id } })
-      .then((res) => setIsLoading(false));
-  };
-
-  const handleRestore = (id: number) => {
-    setIsLoading(true);
-    axios.post(`/api/articles/bin`, { id }).then((res) => setIsLoading(false));
-  };
+    await fetch(`/api/articles/bin`, {
+      method: 'POST',
+      body: JSON.stringify({ id: id }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    setIsLoading(false);
+  }
 
   return isLoading ? (
     <CircularProgress />

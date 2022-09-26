@@ -1,12 +1,10 @@
 import Layout from '../components/layout';
 import CardWithBlurp from '../components/card/CardWithBlurp';
 import worship from 'public/images/worship.jpg';
-import axios from 'axios';
-import { Articles } from '@prisma/client';
 import { removeTags } from '../components/Helpers';
-import { useEffect, useState } from 'react';
-import { Grid, Typography } from '@mui/material';
-import CardWithShadow from '../components/card/CardWithShadow';
+import { useState } from 'react';
+import { Typography } from '@mui/material';
+import Carousel from '../components/Carousel';
 
 export type PagesType = {
   title: string;
@@ -37,54 +35,56 @@ export const Pages: PagesType[] = [
   },
 ];
 
-export default function Home() {
-  const [articles, setArticles] = useState([] as Articles[]);
-
-  useEffect(() => {
-    axios.get('/api/articles').then((res) => setArticles(res.data.data));
-  }, []);
-
+export default function Home({ articles }) {
   return (
     <Layout
       title="We Bring Generations Together to Love GOD and to Love People"
       backgroundImage={worship}
     >
-      <div style={{ margin: '10% 10%' }}>
+      <div style={{ margin: '50px 10%' }}>
         <div style={{ textAlign: 'center' }}>
           <Typography variant="h3">Upcoming Events</Typography>
         </div>
         <br />
-        <Grid
-          container
-          direction={'row'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-          spacing={3}
-        >
-          {articles.map((article, index) => (
-            <Grid item key={index} xs={12} md={4}>
-              <CardWithBlurp title={article.title} blurp={removeTags(article.content)} />
-            </Grid>
-          ))}
-        </Grid>
 
-        <div style={{ textAlign: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '30px',
+          }}
+        >
+          {articles.slice(4, 7).map((article, index) => (
+            <div
+              key={index}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <CardWithBlurp title={article.title} blurp={removeTags(article.content)} />
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: 'center', margin: '50px 0px 20px' }}>
           <Typography variant="h3">Stories of Life</Typography>
         </div>
-        <Grid
-          container
-          direction={'row'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-          spacing={3}
-        >
-          {articles.map((article, index) => (
-            <Grid item key={index} xs={12} md={4}>
-              <CardWithShadow title={article.title} blurp={removeTags(article.content)} />
-            </Grid>
-          ))}
-        </Grid>
+        <Carousel articles={articles} />
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const req = await fetch(`${process.env.NEXTAUTH_URL}/api/articles`);
+  const articles = (await req.json()).data;
+  return {
+    props: {
+      articles: articles,
+    },
+  };
 }
