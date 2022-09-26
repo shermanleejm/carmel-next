@@ -10,14 +10,14 @@ type MenuButtonProps = {
   link: string;
 };
 
-const MenuButton = ({ children, link }: MenuButtonProps) => {
+const MenuButton = ({ children, link, ...rest }: MenuButtonProps) => {
   const router = useRouter();
   const [path, setPath] = useAtom(selectedPath);
   const [isUnderlined, setIsUnderlined] = useState(router.pathname === link);
 
   return (
     <div onClick={() => setPath(link)}>
-      <UnderlineButton link={link} isUnderlined={isUnderlined}>
+      <UnderlineButton {...rest} link={link} isUnderlined={isUnderlined}>
         {children}
       </UnderlineButton>
     </div>

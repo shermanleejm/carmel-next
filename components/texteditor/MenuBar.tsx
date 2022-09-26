@@ -1,14 +1,16 @@
 import { Editor } from '@tiptap/react';
-import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import FormatItalicIcon from '@mui/icons-material/FormatItalic';
-import StrikethroughSIcon from '@mui/icons-material/StrikethroughS';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
-import UndoIcon from '@mui/icons-material/Undo';
-import RedoIcon from '@mui/icons-material/Redo';
-import AddLinkIcon from '@mui/icons-material/AddLink';
-import LinkOffIcon from '@mui/icons-material/LinkOff';
+import {
+  FormatBold,
+  FormatItalic,
+  StrikethroughS,
+  FormatListBulleted,
+  FormatListNumbered,
+  FormatQuote,
+  Undo,
+  Redo,
+  AddLink,
+  LinkOff,
+} from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useCallback } from 'react';
 
@@ -48,21 +50,21 @@ export default function MenuBar({ editor }: MenuBarProps) {
         variant={editor.isActive('bold') ? 'contained' : 'text'}
         size="small"
       >
-        <FormatBoldIcon />
+        <FormatBold />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         variant={editor.isActive('italic') ? 'contained' : 'text'}
         size="small"
       >
-        <FormatItalicIcon />
+        <FormatItalic />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         variant={editor.isActive('strike') ? 'contained' : 'text'}
         size="small"
       >
-        <StrikethroughSIcon />
+        <StrikethroughS />
       </Button>
       <Button
         onClick={() => editor.chain().focus().setParagraph().run()}
@@ -90,30 +92,30 @@ export default function MenuBar({ editor }: MenuBarProps) {
         variant={editor.isActive('bulletList') ? 'contained' : 'text'}
         size="small"
       >
-        <FormatListBulletedIcon />
+        <FormatListBulleted />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         variant={editor.isActive('orderedList') ? 'contained' : 'text'}
         size="small"
       >
-        <FormatListNumberedIcon />
+        <FormatListNumbered />
       </Button>
       <Button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         variant={editor.isActive('blockquote') ? 'contained' : 'text'}
         size="small"
       >
-        <FormatQuoteIcon />
+        <FormatQuote />
       </Button>
       <Button onClick={setLink} variant={editor.isActive('link') ? 'contained' : 'text'}>
-        <AddLinkIcon />
+        <AddLink />
       </Button>
       <Button
         onClick={() => editor.chain().focus().unsetLink().run()}
         disabled={!editor.isActive('link')}
       >
-        <LinkOffIcon />
+        <LinkOff />
       </Button>
       <Button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
         horizontal rule
@@ -125,10 +127,10 @@ export default function MenuBar({ editor }: MenuBarProps) {
         clear formatting
       </Button>
       <Button onClick={() => editor.chain().focus().undo().run()}>
-        <UndoIcon />
+        <Undo />
       </Button>
       <Button onClick={() => editor.chain().focus().redo().run()}>
-        <RedoIcon />
+        <Redo />
       </Button>
     </>
   );

@@ -6,13 +6,19 @@ type UnderlineButtonProps = {
   link: string;
   children: JSX.Element | string;
   isUnderlined?: boolean;
+  inverted?: boolean;
 };
 
-const UnderlineButton = ({ link, children, isUnderlined }: UnderlineButtonProps) => {
+const UnderlineButton = ({
+  link,
+  children,
+  isUnderlined,
+  inverted,
+}: UnderlineButtonProps) => {
   const CustomTypography = styled(Typography)({
     display: 'inline-block',
     position: 'relative',
-    color: 'white',
+    color: inverted ? 'black' : 'white',
     cursor: 'pointer',
     textTransform: 'uppercase',
     fontSize: '1em',

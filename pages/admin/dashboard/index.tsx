@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from 'styles/pages/Dashboard.module.css';
 import CustomDrawer from './CustomDrawer';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AppsIcon from '@mui/icons-material/Apps';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { AddCircle, Apps, DeleteOutline } from '@mui/icons-material';
 import NewPost from '../../../components/texteditor/NewPost';
 import AllArticles from '../../../components/admin/AllArticles';
 import { Articles } from '@prisma/client';
@@ -21,8 +19,8 @@ export default function Dashboard() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
-  const [selectedComponent, setSelectedComponent] = useState(2);
-  const [article, setArticle] = useState<Articles>();
+  const [selectedComponent, setSelectedComponent] = useState(0);
+  const [article, setArticle] = useState<Articles>({ content: '' } as Articles);
 
   const handleChangeComponent = (index: number, article?: Articles) => {
     setArticle(article);
@@ -35,17 +33,17 @@ export default function Dashboard() {
       component: (
         <NewPost article={article} handleChangeComponent={handleChangeComponent} />
       ),
-      icon: <AddCircleIcon />,
+      icon: <AddCircle />,
     },
     {
       title: 'All Articles',
       component: <AllArticles handleChangeComponent={handleChangeComponent} />,
-      icon: <AppsIcon />,
+      icon: <Apps />,
     },
     {
       title: 'Recycle Bin',
       component: <AllArticles isBin={true} />,
-      icon: <DeleteOutlineIcon />,
+      icon: <DeleteOutline />,
     },
   ];
 

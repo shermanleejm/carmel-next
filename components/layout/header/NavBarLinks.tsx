@@ -1,4 +1,3 @@
-import styles from 'styles/components/NavBar.module.css';
 import LogoWhite from 'public/logoWhite.svg';
 import Logo from 'public/logo.svg';
 import SVGContainer from '../../SVGContainer';
@@ -10,7 +9,11 @@ import OutlinedButton from '../../buttons/OutlinedButton';
 import MenuButton from '../../buttons/MenuButton';
 import { useIsMobile } from '../../Helpers';
 
-const NavBarLinks = () => {
+type NavBarLinksProps = {
+  inverted?: boolean;
+};
+
+const NavBarLinks = ({ inverted }: NavBarLinksProps) => {
   const isMobile = useIsMobile();
 
   return (
@@ -25,7 +28,7 @@ const NavBarLinks = () => {
           <NextLink href={'/'}>
             <a>
               <SVGContainer
-                svg={<LogoWhite />}
+                svg={inverted ? <Logo /> : <LogoWhite />}
                 height={'auto'}
                 width={isMobile ? '60vw' : '20vw'}
               />

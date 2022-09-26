@@ -1,4 +1,5 @@
 import { useWindowSize } from '@react-hook/window-size';
+import { text } from 'node:stream/consumers';
 
 import { useEffect, useState } from 'react';
 
@@ -18,4 +19,8 @@ export function useIsMobile() {
 export function removeTags(dirty: string) {
   const regex = /(<([^>]+)>)/gi;
   return dirty.replace(regex, '');
+}
+
+export function truncateText(text: string, length: number = 170) {
+  return text.length > length ? `${text.substring(0, length - 4)}...` : text;
 }

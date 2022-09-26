@@ -4,7 +4,7 @@ import { Articles } from '@prisma/client';
 import CardWithBlurp from '../card/CardWithBlurp';
 import { removeTags } from '../Helpers';
 import { Button, CircularProgress, Grid, IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Delete } from '@mui/icons-material';
 
 type AllArticlesProps = {
   isBin?: boolean;
@@ -19,11 +19,9 @@ export default function AllArticles({
 
   const [articles, setArticles] = useState<Articles[]>([]);
   useEffect(() => {
-    axios
-      .get(`/api/articles${isBin ? '/bin' : ''}`, { params: { bin: true } })
-      .then((res) => {
-        setArticles(res.data.data);
-      });
+    axios.get(`/api/articles${isBin ? '/bin' : ''}`).then((res) => {
+      setArticles(res.data.data);
+    });
   }, [isLoading, isBin]);
 
   const handleDelete = (id: number) => {
@@ -45,8 +43,8 @@ export default function AllArticles({
       <Grid container spacing={1}>
         {articles.map((art, index) => {
           return (
-            <Grid item key={index}>
-              <Grid container direction={'column'}>
+            <Grid item key={index} xs={3}>
+              <Grid container direction={'row'}>
                 <Grid item xs={12}>
                   <CardWithBlurp title={art.title} blurp={removeTags(art.content)} />
                 </Grid>
@@ -54,7 +52,7 @@ export default function AllArticles({
                   <Button
                     onClick={() => handleDelete(art.id)}
                     variant="contained"
-                    startIcon={<DeleteIcon />}
+                    startIcon={<Delete />}
                   >
                     delete {isBin && 'forever'}
                   </Button>

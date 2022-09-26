@@ -14,7 +14,7 @@ const Header = ({ title = '', backgroundImage, showButtons = true }: HeaderProps
     <div>
       <Banner />
 
-      <NavBar backgroundImage={backgroundImage} />
+      <NavBar backgroundImage={backgroundImage} title={title} />
 
       
     </div>

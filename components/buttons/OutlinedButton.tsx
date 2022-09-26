@@ -22,11 +22,11 @@ const OutlinedButton = ({
   const CustomButton = styled(Button)({
     color: inverted ? '#8d0101' : 'white',
     backgroundColor: inverted ? 'white' : '',
-    borderColor: 'white',
+    borderColor: inverted ? '#8d0101' : 'white',
     textTransform: 'uppercase',
     '&:hover': {
       color: inverted ? 'white' : '#8d0101',
-      backgroundColor: inverted ? '' : '#fff',
+      backgroundColor: inverted ? '#8d0101' : '#fff',
       borderColor: 'white',
     },
   });

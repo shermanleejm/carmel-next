@@ -2,19 +2,20 @@ import styles from 'styles/components/CardWithBlurp.module.css';
 import NextImage, { StaticImageData } from 'next/image';
 import { Typography } from '@mui/material';
 import placeholder from 'public/images/worship.jpg';
+import { truncateText } from '../Helpers';
 
 type CardWithBlurpProps = {
   title: string;
   image?: StaticImageData;
-  datetime?: string;
+  subtitle?: string;
   blurp: string;
 };
 
-const CardWithBlurp = ({ image, title, datetime, blurp }: CardWithBlurpProps) => {
+const CardWithBlurp = ({ image, title, subtitle, blurp }: CardWithBlurpProps) => {
   const PrimaryText = () => {
     return (
       <div className={styles.card_blurp_primary}>
-        <Typography variant="subtitle2">{datetime}</Typography>
+        <Typography variant="subtitle2">{subtitle}</Typography>
         <Typography variant="h6">{title}</Typography>
       </div>
     );
@@ -23,9 +24,7 @@ const CardWithBlurp = ({ image, title, datetime, blurp }: CardWithBlurpProps) =>
   const SecondaryText = () => {
     return (
       <div className={styles.card_blurp_secondary}>
-        <Typography variant="body2">
-          {blurp.length > 170 ? `${blurp.substring(0, 170 - 4)}...` : blurp}
-        </Typography>
+        <Typography variant="body2">{truncateText(blurp)}</Typography>
       </div>
     );
   };

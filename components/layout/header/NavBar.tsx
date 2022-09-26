@@ -7,39 +7,65 @@ import OutlinedButton from '../../buttons/OutlinedButton';
 
 type NavBarProps = {
   backgroundImage?: StaticImageData;
+  title?: string | JSX.Element;
 };
 
-const NavBar = ({ backgroundImage }: NavBarProps) => {
+const NavBar = ({ backgroundImage, title }: NavBarProps) => {
+  const inverted = backgroundImage === undefined;
+
   return (
-    <div className={styles.navbar}>
-      <NextImage
-        src={backgroundImage}
-        layout="fill"
-        objectFit="cover"
-        placeholder="blur"
-      />
-      <div className={styles.overlay}>
-        <NavBarLinks />
+    <div
+      className={styles.navbar}
+      style={{
+        height: inverted ? '15vh' : '95vh',
+        backgroundColor: inverted ? 'white' : '',
+      }}
+    >
+      {!inverted && (
+        <NextImage
+          src={backgroundImage}
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+        />
+      )}
+      <div
+        className={styles.overlay}
+        style={{ background: inverted ? 'rgba(0,0,0,0)' : 'rgba(30, 15, 0, 0.6)' }}
+      >
+        <NavBarLinks inverted={inverted} />
 
         <div className={styles.title}>
-          <Grid container direction={'column'} alignItems={'center'} spacing={4}>
+          <Grid
+            container
+            direction={'column'}
+            alignItems={'strech'}
+            spacing={3}
+            justifyContent={'center'}
+          >
             <Grid item>
-              <Typography variant="h3">
-                We Bring Generations Together to Love GOD and to Love People
-              </Typography>
+              <Typography variant="h4">{title}</Typography>
             </Grid>
 
-            <Grid item>
-              <Grid container spacing={4}>
-                <Grid item>
-                  <OutlinedButton>join us in person</OutlinedButton>
-                </Grid>
+            {!inverted && (
+              <Grid item>
+                <Grid
+                  container
+                  spacing={2}
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <OutlinedButton>join us in person</OutlinedButton>
+                  </Grid>
 
-                <Grid item>
-                  <OutlinedButton>join us online</OutlinedButton>
+                  <Grid item>
+                    <OutlinedButton>join us online</OutlinedButton>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            )}
           </Grid>
         </div>
 

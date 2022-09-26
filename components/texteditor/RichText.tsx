@@ -3,7 +3,14 @@ import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import MenuBar from './MenuBar';
 import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Button, FormControl, FormHelperText, Grid, TextField } from '@mui/material';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  Input,
+  TextField,
+} from '@mui/material';
 import axios from 'axios';
 import { Articles } from '@prisma/client';
 
@@ -24,6 +31,7 @@ export default function RichText({
 }: RichTextProps) {
   const [title, setTitle] = useState(article.title ?? '');
   const [errorTitle, setErrorTitle] = useState(false);
+  const [image, setImage] = useState(null);
 
   const editor = useEditor({
     extensions: [StarterKit, Link],
@@ -45,6 +53,14 @@ export default function RichText({
       .then((res) => console.log(res.data.data))
       .catch((err) => console.log(err))
       .finally(() => submit());
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const tmp = event.target.files[0];
+      setImage(tmp);
+      
+    }
   };
 
   return (
@@ -71,6 +87,15 @@ export default function RichText({
           <FormHelperText style={{ color: 'red' }}>Please provide a title</FormHelperText>
         )}
       </FormControl>
+
+      <div>
+        <Input
+          type={'file'}
+          hidden
+          inputProps={{ accept: 'image/png,image/jpg,image/jpeg' }}
+        />
+      </div>
+
       <Grid container direction={'column'}>
         <Grid item></Grid>
 
