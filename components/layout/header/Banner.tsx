@@ -1,4 +1,3 @@
-import { StaticImageData } from 'next/image';
 import styles from 'styles/layout/header.module.css';
 
 const Banner = () => {

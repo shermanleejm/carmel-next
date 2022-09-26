@@ -1,4 +1,4 @@
-import styles from 'styles/components/NavBar.module.css';
+import styles from '../../../styles/components/NavBar.module.css';
 import { StaticImageData } from 'next/image';
 import NextImage from 'next/image';
 import NavBarLinks from './NavBarLinks';

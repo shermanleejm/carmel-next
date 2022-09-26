@@ -1,9 +1,8 @@
 import { Grid } from '@mui/material';
-import styles from 'styles/layout/footer.module.css';
+import styles from '../../../styles/layout/footer.module.css';
 import OutlinedButton from '../../buttons/OutlinedButton';
 import { useIsMobile } from '../../Helpers';
 import { Pages } from 'pages/index';
-import UnderlineButton from '../../buttons/UnderlineButton';
 import MenuButton from '../../buttons/MenuButton';
 
 const Banner = () => {

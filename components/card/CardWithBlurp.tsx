@@ -1,4 +1,4 @@
-import styles from 'styles/components/CardWithBlurp.module.css';
+import styles from '../../styles/components/CardWithBlurp.module.css';
 import NextImage, { StaticImageData } from 'next/image';
 import { Typography } from '@mui/material';
 import placeholder from 'public/images/worship.jpg';

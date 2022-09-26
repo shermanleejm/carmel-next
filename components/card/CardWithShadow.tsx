@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import styles from 'styles/components/CardWithShadow.module.css';
+import styles from '../../styles/components/CardWithShadow.module.css';
 import NextImage, { StaticImageData } from 'next/image';
 import placeholder from 'public/images/worship.jpg';
 import { Typography } from '@mui/material';

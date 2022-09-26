@@ -3,11 +3,11 @@ import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from 'styles/pages/Dashboard.module.css';
-import CustomDrawer from 'components/admin/CustomDrawer';
 import { AddCircle, Apps, DeleteOutline } from '@mui/icons-material';
-import NewPost from 'components/texteditor/NewPost';
-import AllArticles from 'components/admin/AllArticles';
 import { Articles } from '@prisma/client';
+import NewPost from '../../components/texteditor/NewPost';
+import AllArticles from '../../components/admin/AllArticles';
+import CustomDrawer from '../../components/admin/CustomDrawer';
 
 export type DrawerComponentType = {
   title: string;

@@ -1,6 +1,4 @@
 import { useWindowSize } from '@react-hook/window-size';
-import { text } from 'node:stream/consumers';
-
 import { useEffect, useState } from 'react';
 
 export const MOBILE_BREAKPOINT = 900;

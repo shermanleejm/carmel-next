@@ -14,9 +14,9 @@ import {
 } from '@mui/material';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
-import { DrawerComponentType } from 'pages/admin/dashboard';
 import OutlinedButton from '../buttons/OutlinedButton';
 import { Articles } from '@prisma/client';
+import { DrawerComponentType } from '../../pages/admin/dashboard';
 
 type CustomDrawerProps = {
   session?: Session;

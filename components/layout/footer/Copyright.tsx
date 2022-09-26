@@ -1,4 +1,4 @@
-import styles from 'styles/layout/footer.module.css';
+import styles from '../../../styles/layout/footer.module.css';
 
 const Copyright = () => {
   const COPYRIGHT =

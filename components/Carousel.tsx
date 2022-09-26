@@ -2,7 +2,7 @@ import { Articles } from '@prisma/client';
 import { useState } from 'react';
 import { removeTags, useIsMobile } from './Helpers';
 import { Circle, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
-import { Grid, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import CardWithShadow from './card/CardWithShadow';
 
 type CarouselProps = {

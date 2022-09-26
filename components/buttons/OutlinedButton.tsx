@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Button } from '@mui/material';
-import styles from 'styles/components/buttons.module.css';
 import styled from '@emotion/styled';
 
 type OutlinedButtonProps = {
