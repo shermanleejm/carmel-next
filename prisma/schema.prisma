@@ -18,6 +18,7 @@ model Articles {
   date        String?
   link        String?
   isEvent     Boolean       @default(false)
+  deleted     Boolean       @default(false)
   ArticleTags ArticleTags[]
 }
 

@@ -21,8 +21,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     res.status(200).json({ data: 'Success!' })
-  } else {
-    const allArticles = await prisma.articles.findMany()
+  }
+
+  if (req.method === "GET") {
+    const allArticles = await prisma.articles.findMany({
+      where: {
+        deleted: false
+      }
+    })
     res.status(200).json({ data: allArticles })
+  }
+
+  if (req.method === 'DELETE') {
+    const id = req.body.id;
+
+    await prisma.articles.update({
+      where: {
+        id: id
+      },
+      data: {
+        deleted: true
+      }
+    })
+
+    res.status(200).json({ data: "Deleted!" })
   }
 }

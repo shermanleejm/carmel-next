@@ -8,7 +8,7 @@ type OutlinedButtonProps = {
   href?: string;
   size?: 'large' | 'small' | 'medium';
   inverted?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   // color?: string; // defaults to white and #f19e04 when hover
 };
 

@@ -1,7 +1,6 @@
 import {
   AppBar,
   Box,
-  Button,
   CssBaseline,
   Drawer,
   Grid,
@@ -13,17 +12,15 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Session } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { DrawerComponentType } from '.';
-import { Dispatch, SetStateAction } from 'react';
 import OutlinedButton from '../../../components/buttons/OutlinedButton';
+import { Articles } from '@prisma/client';
 
 type CustomDrawerProps = {
   session?: Session;
-  setSelectedComponent: Dispatch<SetStateAction<number>>;
+  handleChangeComponent: (index: number, article: Articles) => void;
   components: DrawerComponentType[];
   children: JSX.Element;
 };
@@ -32,7 +29,7 @@ export default function CustomDrawer({
   session,
   components,
   children,
-  setSelectedComponent,
+  handleChangeComponent,
 }: CustomDrawerProps) {
   const drawerWidth = 240;
 
@@ -71,7 +68,11 @@ export default function CustomDrawer({
             <List>
               {components.map((comp, index) => (
                 <ListItem key={index} disablePadding>
-                  <ListItemButton onClick={() => setSelectedComponent(index)}>
+                  <ListItemButton
+                    onClick={() =>
+                      handleChangeComponent(index, { content: '' } as Articles)
+                    }
+                  >
                     <ListItemIcon>{comp.icon}</ListItemIcon>
                     <ListItemText primary={comp.title} />
                   </ListItemButton>

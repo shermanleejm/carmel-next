@@ -6,7 +6,10 @@ import styles from 'styles/pages/Dashboard.module.css';
 import CustomDrawer from './CustomDrawer';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AppsIcon from '@mui/icons-material/Apps';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NewPost from '../../../components/texteditor/NewPost';
+import AllArticles from '../../../components/admin/AllArticles';
+import { Articles } from '@prisma/client';
 
 export type DrawerComponentType = {
   title: string;
@@ -14,24 +17,37 @@ export type DrawerComponentType = {
   icon: JSX.Element;
 };
 
-const components: DrawerComponentType[] = [
-  {
-    title: 'Add New Article',
-    component: <NewPost />,
-    icon: <AddCircleIcon />,
-  },
-  {
-    title: 'All Articles',
-    component: <div>all articles</div>,
-    icon: <AppsIcon />,
-  },
-];
-
 export default function Dashboard() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
-  const [selectedComponent, setSelectedComponent] = useState(0);
+  const [selectedComponent, setSelectedComponent] = useState(2);
+  const [article, setArticle] = useState<Articles>();
+
+  const handleChangeComponent = (index: number, article?: Articles) => {
+    setArticle(article);
+    setSelectedComponent(index);
+  };
+
+  const components: DrawerComponentType[] = [
+    {
+      title: 'Add New Article',
+      component: (
+        <NewPost article={article} handleChangeComponent={handleChangeComponent} />
+      ),
+      icon: <AddCircleIcon />,
+    },
+    {
+      title: 'All Articles',
+      component: <AllArticles handleChangeComponent={handleChangeComponent} />,
+      icon: <AppsIcon />,
+    },
+    {
+      title: 'Recycle Bin',
+      component: <AllArticles isBin={true} />,
+      icon: <DeleteOutlineIcon />,
+    },
+  ];
 
   useEffect(() => {
     getSession().then((session) => {
@@ -58,7 +74,7 @@ export default function Dashboard() {
       <CustomDrawer
         session={session}
         components={components}
-        setSelectedComponent={setSelectedComponent}
+        handleChangeComponent={handleChangeComponent}
       >
         <div>{components[selectedComponent].component}</div>
       </CustomDrawer>

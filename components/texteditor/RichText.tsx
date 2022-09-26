@@ -5,23 +5,30 @@ import MenuBar from './MenuBar';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Button, FormControl, FormHelperText, Grid, TextField } from '@mui/material';
 import axios from 'axios';
+import { Articles } from '@prisma/client';
 
 type RichTextProps = {
-  id?: number;
-  width?: string | number;
   setPreview: Dispatch<SetStateAction<string>>;
+  preview: string;
+  article: Articles;
+  width?: string | number;
+  submit: () => void;
 };
 
-export default function RichText({ width = 500, setPreview, id }: RichTextProps) {
-  const [content, setContent] = useState('');
-  const [title, setTitle] = useState('');
+export default function RichText({
+  width = 500,
+  setPreview,
+  preview,
+  article,
+  submit,
+}: RichTextProps) {
+  const [title, setTitle] = useState(article.title ?? '');
   const [errorTitle, setErrorTitle] = useState(false);
 
   const editor = useEditor({
     extensions: [StarterKit, Link],
-    content: '<p>Create your new post here!</p>',
+    content: preview,
     onUpdate: ({ editor }) => {
-      setContent(editor.getHTML());
       setPreview(editor.getHTML());
     },
   });
@@ -34,9 +41,10 @@ export default function RichText({ width = 500, setPreview, id }: RichTextProps)
 
     // Save to DB
     axios
-      .post('/api/article', { content: content, title: title, id: id })
+      .post('/api/articles', { content: preview, title: title, id: article.id })
       .then((res) => console.log(res.data.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => submit());
   };
 
   return (

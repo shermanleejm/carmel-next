@@ -14,3 +14,8 @@ export function useIsMobile() {
 
   return isMobile;
 }
+
+export function removeTags(dirty: string) {
+  const regex = /(<([^>]+)>)/gi;
+  return dirty.replace(regex, '');
+}

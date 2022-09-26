@@ -1,10 +1,11 @@
 import styles from 'styles/components/CardWithBlurp.module.css';
 import NextImage, { StaticImageData } from 'next/image';
 import { Typography } from '@mui/material';
+import placeholder from 'public/images/worship.jpg';
 
 type CardWithBlurpProps = {
-  image: StaticImageData;
   title: string;
+  image?: StaticImageData;
   datetime?: string;
   blurp: string;
 };
@@ -32,7 +33,7 @@ const CardWithBlurp = ({ image, title, datetime, blurp }: CardWithBlurpProps) =>
   return (
     <div className={styles.card_blurp_container}>
       <NextImage
-        src={image}
+        src={image ?? placeholder}
         alt={title}
         layout="responsive"
         objectFit="cover"

@@ -1,5 +1,6 @@
 .card_blurp_container {
   width: 300px;
+  height: auto;
   position: relative;
 }
 
