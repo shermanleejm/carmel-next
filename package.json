@@ -9,25 +9,29 @@
     "start": "next start",
     "lint": "next lint",
     "cert": "rm -rf .cert && mkdir -p .cert && mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "migrate": "npx prisma migrate dev"
   },
   "dependencies": {
     "@emotion/css": "^11.10.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@prisma/client": "4.3.1",
     "@react-hook/window-size": "^3.1.1",
+    "@tiptap/extension-link": "^2.0.0-beta.196",
+    "@tiptap/react": "^2.0.0-beta.196",
+    "@tiptap/starter-kit": "^2.0.0-beta.196",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.2",
+    "html-react-parser": "^3.0.4",
     "jotai": "^1.8.4",
     "next": "12.3.1",
     "next-auth": "^4.12.0",
     "react": "18.2.0",
     "react-device-detect": "^2.2.2",
-    "react-dom": "18.2.0",
-    "slate": "^0.82.1",
-    "slate-history": "^0.66.0",
-    "slate-react": "^0.83.0"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",

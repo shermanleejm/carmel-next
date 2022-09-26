@@ -13,10 +13,11 @@ datasource db {
 model Articles {
   id          Int           @id @default(autoincrement())
   title       String
-  description String
-  author      String
+  content     String
+  author      String?
   date        String?
   link        String?
+  isEvent     Boolean       @default(false)
   ArticleTags ArticleTags[]
 }
 

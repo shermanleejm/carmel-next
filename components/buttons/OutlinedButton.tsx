@@ -8,6 +8,7 @@ type OutlinedButtonProps = {
   href?: string;
   size?: 'large' | 'small' | 'medium';
   inverted?: boolean;
+  onClick: () => void;
   // color?: string; // defaults to white and #f19e04 when hover
 };
 
@@ -16,6 +17,7 @@ const OutlinedButton = ({
   href,
   size,
   inverted = false,
+  onClick,
 }: OutlinedButtonProps) => {
   const CustomButton = styled(Button)({
     color: inverted ? '#8d0101' : 'white',
@@ -31,7 +33,7 @@ const OutlinedButton = ({
 
   return (
     <Link href={href ?? ''}>
-      <CustomButton variant="outlined" size={size ?? 'medium'}>
+      <CustomButton variant="outlined" size={size ?? 'medium'} onClick={() => onClick()}>
         {children}
       </CustomButton>
     </Link>

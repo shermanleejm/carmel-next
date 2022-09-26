@@ -1,14 +1,37 @@
-import { Button, CircularProgress } from '@mui/material';
-import { getSession, signOut, useSession } from 'next-auth/react';
+import { CircularProgress } from '@mui/material';
+import { getSession, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styles from 'styles/pages/Dashboard.module.css';
-import RichText from '../../../components/texteditor/RichText';
+import CustomDrawer from './CustomDrawer';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AppsIcon from '@mui/icons-material/Apps';
+import NewPost from '../../../components/texteditor/NewPost';
+
+export type DrawerComponentType = {
+  title: string;
+  component: JSX.Element;
+  icon: JSX.Element;
+};
+
+const components: DrawerComponentType[] = [
+  {
+    title: 'Add New Article',
+    component: <NewPost />,
+    icon: <AddCircleIcon />,
+  },
+  {
+    title: 'All Articles',
+    component: <div>all articles</div>,
+    icon: <AppsIcon />,
+  },
+];
 
 export default function Dashboard() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const { data: session } = useSession();
+  const [selectedComponent, setSelectedComponent] = useState(0);
 
   useEffect(() => {
     getSession().then((session) => {
@@ -32,10 +55,13 @@ export default function Dashboard() {
     </div>
   ) : (
     <div>
-      <h1>Welcome {session?.user?.name}</h1>
-      <Button onClick={() => signOut({ callbackUrl: '/' })}>sign out</Button>
-
-      <RichText />
+      <CustomDrawer
+        session={session}
+        components={components}
+        setSelectedComponent={setSelectedComponent}
+      >
+        <div>{components[selectedComponent].component}</div>
+      </CustomDrawer>
     </div>
   );
 }
